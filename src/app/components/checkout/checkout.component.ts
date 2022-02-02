@@ -23,7 +23,7 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  onSubmi(){
+  onSubmit(){
     console.log("Handlign the submit button");
     console.log(this.checkoutFormGroup?.get('customer')?.value);
   }
