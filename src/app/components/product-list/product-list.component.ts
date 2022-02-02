@@ -21,6 +21,7 @@ export class ProductListComponent implements OnInit {
   thePageSize: number = 5;
   theTotalElements: number = 0;
 
+  previousKeyword?: string;
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute) { }
@@ -47,11 +48,26 @@ export class ProductListComponent implements OnInit {
   handleSearchProducts() {
     const theKeyord: string = this.route.snapshot.paramMap.get('keyword')!;
 
-    this.productService.searchProducts(theKeyord).subscribe(
-      data => {
-        this.products = data;
-      }
-    );
+    // if we have a different keyword tham the previous
+    // then set thePageNumber to 1
+
+    if(this.previousKeyword != theKeyord){
+      this.thePageNumber = 1;
+    }
+
+    this.previousKeyword = theKeyord;
+
+    console.log(`keyword=${theKeyord}, thePageNumber=${this.thePageNumber}`)
+
+    this.productService.searchProductsPaginate(this.thePageNumber,
+                                              this.thePageSize,
+                                              theKeyord).subscribe(this.processResult());
+    // OLD
+    // this.productService.searchProducts(theKeyord).subscribe(
+    //   data => {
+    //     this.products = data;
+    //   }
+    // );
   }
 
   handleListProducts(){
@@ -92,20 +108,21 @@ export class ProductListComponent implements OnInit {
                                               this.thePageSize,
                                               this.currentCategoryId)
                                               .subscribe(this.processResult());
-}
+  }
 
-    processResult() {
-      //Error
-      //return data => {
+  processResult() {
+    //Error
+    //return data => {
 
-      //QUICK FIX
-      return (data: { _embedded: { products: Product[]; }; page: { number: number; size: number; totalElements: number; }; }) => {
-        this.products = data._embedded.products;
-        this.thePageNumber = data.page.number + 1;
-        this.thePageSize = data.page.size;
-        this.theTotalElements = data.page.totalElements;
+    //QUICK FIX
+    return (data: { _embedded: { products: Product[]; }; page: { number: number; size: number; totalElements: number; }; }) => {
+      this.products = data._embedded.products;
+      this.thePageNumber = data.page.number + 1;
+      this.thePageSize = data.page.size;
+      this.theTotalElements = data.page.totalElements;
     };
   }
+
   updatePageSize(event: any){
     this.thePageSize = event.target.value;
     this.thePageNumber = 1;
