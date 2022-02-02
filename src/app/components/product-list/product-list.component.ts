@@ -59,7 +59,7 @@ export class ProductListComponent implements OnInit {
 
     console.log(`keyword=${theKeyord}, thePageNumber=${this.thePageNumber}`)
 
-    this.productService.searchProductsPaginate(this.thePageNumber,
+    this.productService.searchProductsPaginate(this.thePageNumber - 1,
                                               this.thePageSize,
                                               theKeyord).subscribe(this.processResult());
     // OLD
