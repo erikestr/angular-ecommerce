@@ -46,6 +46,8 @@
                                 </div>
                             </div>
 
+                            <button (click)="remove(tempCartItem)" class="btn btn-primary btn-sm"></button>
+
                             <p class="mt-2">Subtotal: {{tempCartItem.quantity * tempCartItem.unitPrice! | currency: 'USD'}}</p>
                         </td>
                     </tr>
