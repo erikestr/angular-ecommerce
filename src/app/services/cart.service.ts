@@ -20,17 +20,20 @@ export class CartService {
     let alreadyExistInCart: boolean = false;
     let existingInCart: CartItem | undefined;
 
-    if(this.cartItems.length > 0){
-    //find the item in the card based on item id
-      for(let tempCartItem of this.cartItems){
-        if(tempCartItem.id === theCartItem.id){
-          existingInCart = tempCartItem;
-          break;
-        }
-      }
+    // refactor
+    // if(this.cartItems.length > 0){
+    // //find the item in the card based on item id
+    //   for(let tempCartItem of this.cartItems){
+    //     if(tempCartItem.id === theCartItem.id){
+    //       existingInCart = tempCartItem;
+    //       break;
+    //     }
+    //   }
+    // }
+    existingInCart = this.cartItems.find(tempCartItem => tempCartItem.id === theCartItem.id);
 
       alreadyExistInCart = (existingInCart != undefined);
-    }
+
 
     if(alreadyExistInCart){
       existingInCart!.quantity++;
