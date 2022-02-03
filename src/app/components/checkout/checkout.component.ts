@@ -99,11 +99,19 @@ export class CheckoutComponent implements OnInit {
   }
 
   copyShippingAddressToBillingAddress(event : any){
+
+    //TODO: if user change data from Shipping Address refresh data on Billing Address 
     
     if(event.target.checked){
       this.checkoutFormGroup?.controls['billingAddress'].setValue(this.checkoutFormGroup.controls['shippingAddress'].value);
+
+      // bug about copy states to the billing addres states
+      this.billingAddressStates = this.shippingAddressStates;
     }else{
       this.checkoutFormGroup?.controls['billingAddress'].reset();
+
+      // bug about copy states to the billing addres states
+      this.billingAddressStates = [];
     }
   }
 
