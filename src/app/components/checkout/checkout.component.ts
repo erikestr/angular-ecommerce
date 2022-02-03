@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Country } from 'src/app/common/country';
 import { Luv2ShopFormService } from 'src/app/services/luv2-shop-form.service';
 
 @Component({
@@ -16,6 +17,9 @@ export class CheckoutComponent implements OnInit {
   //Luv2ShopService --> getCreditCard Months and Years
   creditCardMonths: number[] = [];
   creditCardYears: number[] = [];
+
+  //Luv2ShopService --> Countries and States
+  countries: Country[] = []
 
   constructor(private formBuilder: FormBuilder,
               private luv2ShopService: Luv2ShopFormService) { }
@@ -52,8 +56,7 @@ export class CheckoutComponent implements OnInit {
       })
     });
 
-    //Luv2ShopService --> getCreditCard Months and Years --> populate credit card months
-
+    // Luv2ShopService --> getCreditCard Months and Years --> populate credit card months
 
     const startMonth: number = new Date().getMonth() + 1;
     console.log("startMonth: "+startMonth);
@@ -65,7 +68,7 @@ export class CheckoutComponent implements OnInit {
       }
     );
 
-    //Luv2ShopService --> getCreditCard Months and Years --> populate credit card years
+    // Luv2ShopService --> getCreditCard Months and Years --> populate credit card years
     this.luv2ShopService.getCreditCardYears().subscribe(
       data => {
         console.log("Retrieved credit card years: " + JSON.stringify(data));
@@ -73,7 +76,13 @@ export class CheckoutComponent implements OnInit {
       }
     );
 
-
+    // Luv2ShopService --> populate countries
+    this.luv2ShopService.getCountries().subscribe(
+      data => {
+        console.log("Retrieved countries: "+ JSON.stringify(data));
+        this.countries = data;
+      }
+    );
   }
 
   onSubmit(){
