@@ -180,6 +180,86 @@
                     </div>
 
                 </div>
+
+                <!-- creditCard form group -->
+                <div formGroupName="creditCard" class="form-area">
+                    <h3>Credit Card</h3>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Card Type</label>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="input-space">
+                                <select formControlName="cardType">
+                                    <option>Visa</option>
+                                    <option>Mastercard</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Name in Card</label>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="input-space">
+                                <input type="text" formControlName="nameOnCard">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Card Number</label>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="input-space">
+                                <input type="text" formControlName="cardNumber">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Security Code</label>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="input-space">
+                                <input type="text" formControlName="securityCode">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Expiration Month</label>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="input-space">
+                                <select formControlName="expirationMonth">
+                                    <option>TODO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Expiration Year</label>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="input-space">
+                                <select formControlName="expirationYear">
+                                    <option>TODO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
                 <!-- submit button -->
                 <div class="text-center">
                     <button type="submit" class="btn btn-info">Purchase</button>
