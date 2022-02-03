@@ -42,7 +42,7 @@ export class CheckoutComponent implements OnInit {
         country: [''],
         zipCode: ['']
       }),
-      creditCart: this.formBuilder.group({
+      creditCard: this.formBuilder.group({
         cartType: [''],
         nameOnCard: [''],
         cardNumber: [''],
