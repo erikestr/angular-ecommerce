@@ -64,11 +64,20 @@ export class CheckoutComponent implements OnInit {
                                 Luv2ShopValidators.notOnlyWhitespace])
       }),
       billingAddress: this.formBuilder.group({
-        street: [''],
-        city: [''],
-        state: [''],
-        country: [''],
-        zipCode: ['']
+        street: new FormControl('', 
+                              [ Validators.required, 
+                                Validators.minLength(2),
+                                Luv2ShopValidators.notOnlyWhitespace]),
+        city: new FormControl('', 
+                              [ Validators.required, 
+                                Validators.minLength(2),
+                                Luv2ShopValidators.notOnlyWhitespace]),
+        state: new FormControl('', [ Validators.required ]),
+        country: new FormControl('', [ Validators.required ]),
+        zipCode: new FormControl('', 
+                              [ Validators.required, 
+                                Validators.minLength(2),
+                                Luv2ShopValidators.notOnlyWhitespace])
       }),
       creditCard: this.formBuilder.group({
         cardType: [''],
@@ -118,6 +127,13 @@ export class CheckoutComponent implements OnInit {
   get shippingAddressCountry(){ return this.checkoutFormGroup?.get('shippingAddress.country'); }
   get shippingAddressState(){ return this.checkoutFormGroup?.get('shippingAddress.state'); }
   get shippingAddressZipCode(){ return this.checkoutFormGroup?.get('shippingAddress.zipCode'); }
+
+  
+  get billingAddressStreet(){ return this.checkoutFormGroup?.get('billingAddress.street'); }
+  get billingAddressCity(){ return this.checkoutFormGroup?.get('billingAddress.city'); }
+  get billingAddressCountry(){ return this.checkoutFormGroup?.get('billingAddress.country'); }
+  get billingAddressState(){ return this.checkoutFormGroup?.get('billingAddress.state'); }
+  get billingAddressZipCode(){ return this.checkoutFormGroup?.get('billingAddress.zipCode'); }
 
   onSubmit(){
     console.log("Handlign the submit button");
