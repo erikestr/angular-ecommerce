@@ -93,9 +93,9 @@ export class CheckoutComponent implements OnInit {
     );
   }
 
-  get firstName(){ return this.checkoutFormGroup?.get('custumer.firstName'); }
-  get lastName(){ return this.checkoutFormGroup?.get('custumer.lastName'); }
-  get email(){ return this.checkoutFormGroup?.get('custumer.email'); }
+  get firstName(){ return this.checkoutFormGroup?.get('customer.firstName'); }
+  get lastName(){ return this.checkoutFormGroup?.get('customer.lastName'); }
+  get email(){ return this.checkoutFormGroup?.get('customer.email'); }
 
   onSubmit(){
     console.log("Handlign the submit button");
