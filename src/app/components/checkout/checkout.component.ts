@@ -85,8 +85,8 @@ export class CheckoutComponent implements OnInit {
                               [ Validators.required, 
                                 Validators.minLength(2),
                                 Luv2ShopValidators.notOnlyWhitespace]),
-        cardNumber: new FormControl('', [ Validators.pattern('[0-9]{16}') ]),
-        securityCode: new FormControl('', [ Validators.pattern('[0-9]{3}') ]),
+        cardNumber: new FormControl('', [ Validators.required, Validators.pattern('[0-9]{16}') ]),
+        securityCode: new FormControl('', [ Validators.required, Validators.pattern('[0-9]{3}') ]),
         expirationMonth: [''],
         expirationYear: ['']
         // expirationMonth: new FormControl('', [ Validators.required ]),
