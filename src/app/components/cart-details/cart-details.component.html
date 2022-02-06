@@ -23,10 +23,11 @@
                             <div class="items">
                                 <label>Quantity:</label>
                                 <div class="row no-gutters mt-1">
-                                    <!-- Increment button -->
+
+                                    <!-- Decrement button -->
                                     <div class="col">
-                                        <button (click)="incrementQuantity(tempCartItem)" class="btn btn-primary btn-sm">
-                                            <i class="fas fa-plus"></i>
+                                        <button (click)="decrementQuantity(tempCartItem)" class="btn btn-primary btn-sm">
+                                            <i class="fas fa-minus"></i>
                                         </button>
                                     </div>
 
@@ -35,10 +36,10 @@
                                         {{tempCartItem.quantity}}
                                     </div>
 
-                                    <!-- Decrement button -->
+                                    <!-- Increment button -->
                                     <div class="col">
-                                        <button (click)="decrementQuantity(tempCartItem)" class="btn btn-primary btn-sm">
-                                            <i class="fas fa-minus"></i>
+                                        <button (click)="incrementQuantity(tempCartItem)" class="btn btn-primary btn-sm">
+                                            <i class="fas fa-plus"></i>
                                         </button>
                                     </div>
 
