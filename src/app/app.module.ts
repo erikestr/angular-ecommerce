@@ -18,16 +18,18 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { LoginStatusComponent } from './components/login-status/login-status.component';
+import { MembersPageComponent } from './components/members-page/members-page.component';
 
 import {
   OKTA_CONFIG,
   OktaAuthModule,
-  OktaCallbackComponent
+  OktaCallbackComponent,
+  OktaAuthGuard
 } from '@okta/okta-angular';
+
 import { OktaAuth } from '@okta/okta-auth-js';
 
 import myAppConfig from './config/my-app-config';
-import { MembersPageComponent } from './components/members-page/members-page.component';
 
 // const oktaConfig = Object.assign({
 //   onAuthRequired: (injector: any) => {
@@ -39,7 +41,7 @@ import { MembersPageComponent } from './components/members-page/members-page.com
 // }, myAppConfig.oidc);
 
 const oktaConfig = Object.assign({
-  onAuthRequired: (injector: any) => {
+  onAuthRequired: (oktaAuth: any, injector: any) => {
     const router = injector.get(Router);
     // Redirect the user to your custom login page
     router.navigate(['/login']);
@@ -48,7 +50,14 @@ const oktaConfig = Object.assign({
 
 const oktaAuth = new OktaAuth(oktaConfig);
 
+// Solution for OktaAuthGuard that no redirect to /login and redirect to issuer link
+export function onAuthRequired(oktaAuth: OktaAuth, injector: Injector): void {
+  const router = injector.get(Router);
+  router.navigate(['/login']);
+}
+
 const routes: Routes = [
+  {path: 'members', component: MembersPageComponent, canActivate: [OktaAuthGuard], data: { onAuthRequired } /* add like data the onAuthRequired */},
   {path: 'login/callback', component: OktaCallbackComponent},
   {path: 'login', component: LoginComponent},
   {path: 'checkout', component: CheckoutComponent},
@@ -61,6 +70,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/products', pathMatch: 'full'},
   {path: '**', redirectTo: '/products', pathMatch: 'full'}
 ];
+
 
 @NgModule({
   declarations: [

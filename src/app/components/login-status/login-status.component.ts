@@ -20,7 +20,6 @@ export class LoginStatusComponent implements OnInit {
 
     this.oktaAuthService.authStateManager.subscribe(
       (result: any) => {
-        console.log("result for authStateManager: "+ JSON.stringify(result))
         this.isAuthenticated = result;
         this.getUserDetails();
       }
