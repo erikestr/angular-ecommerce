@@ -12,7 +12,18 @@ export class CartService {
   totalPrice: Subject<number> = new BehaviorSubject<number>(0);
   totalQuantity: Subject<number> = new BehaviorSubject<number>(0);
 
-  constructor() { }
+  // storage: Storage = sessionStorage;       --> Used for session of browser, if we close that the data disapers
+  storage: Storage = localStorage;
+
+  constructor() {
+    let data = JSON.parse(this.storage.getItem('cartItems')!);
+
+    if(data != null){
+      this.cartItems = data;
+
+      this.computeCartTotals();
+    }
+   }
 
   addToCart(theCartItem: CartItem){
     //check if we already have the item in our cart
@@ -70,6 +81,9 @@ export class CartService {
 
     // console.log(`totalPrice=${totalPriceValue.toFixed(2)}, totalQuantity=${totalQuantityValue}`);
     // console.log('------');
+
+    /* Persist Cart Data */
+    this.persistCarItems();
   }
 
   decrementQuantity(theCartItem: CartItem) {
@@ -91,5 +105,9 @@ export class CartService {
 
       this.computeCartTotals();
     }
+  }
+
+  persistCarItems(){
+    this.storage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
 }
