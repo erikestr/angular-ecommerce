@@ -30,6 +30,7 @@ import {
 import { OktaAuth } from '@okta/okta-auth-js';
 
 import myAppConfig from './config/my-app-config';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
 
 // const oktaConfig = Object.assign({
 //   onAuthRequired: (injector: any) => {
@@ -57,6 +58,7 @@ export function onAuthRequired(oktaAuth: OktaAuth, injector: Injector): void {
 }
 
 const routes: Routes = [
+  {path: 'order-history', component: OrderHistoryComponent, canActivate: [OktaAuthGuard], data: { onAuthRequired } /* add like data the onAuthRequired */},
   {path: 'members', component: MembersPageComponent, canActivate: [OktaAuthGuard], data: { onAuthRequired } /* add like data the onAuthRequired */},
   {path: 'login/callback', component: OktaCallbackComponent},
   {path: 'login', component: LoginComponent},
@@ -84,7 +86,8 @@ const routes: Routes = [
     CheckoutComponent,
     LoginComponent,
     LoginStatusComponent,
-    MembersPageComponent
+    MembersPageComponent,
+    OrderHistoryComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
