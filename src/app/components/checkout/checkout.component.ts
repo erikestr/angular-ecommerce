@@ -276,7 +276,7 @@ export class CheckoutComponent implements OnInit {
     purchase.orderItems = orderItems;
 
     // compute payment info
-    this.paymentInfo.amount = this.totalPrice * 100;
+    this.paymentInfo.amount = Math.round(this.totalPrice * 100);
     this.paymentInfo.currency = "USD";
 
     // if valid form then
@@ -297,17 +297,20 @@ export class CheckoutComponent implements OnInit {
           .then(function(result) {
             if (result.error) {
               // inform the customer there was an error
+              console.log("ERROR 1");
               alert(`There was an error: ${result.error.message}`);
             } else {
               // call REST API via the CheckoutService
               this.checkoutService.placeOrder(purchase).subscribe({
                 next: response => {
+                  console.log("TEST 2");
                   alert(`Your order has been received.\nOrder tracking number: ${response.orderTrackingNumber}`);
 
                   // reset cart
                   this.resetCart();
                 },
                 error: err => {
+                  console.log("ERROR 2");
                   alert(`There was an error: ${err.message}`);
                 }
               })
