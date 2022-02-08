@@ -11,7 +11,7 @@ import { Purchase } from '../common/purchase';
 export class CheckoutService {
 
   // refactor with environment 
-  private purchaseUrl = environment.luv2shopApiUrl+"/purchase";
+  private purchaseUrl = environment.luv2shopApiUrl+"/purchase"; // TODO -- PROBLEM HERE
 
   private  paymentIntentUrl = environment.luv2shopApiUrl + '/checkout/payment-intent';
 

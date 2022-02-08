@@ -284,6 +284,8 @@ export class CheckoutComponent implements OnInit {
     // - confirm card payment
     // - place order
 
+    console.log(purchase);
+
     if (!this.checkoutFormGroup?.invalid && this.displayError.textContent === "") {
 
       this.checkoutService.createPaymentIntent(this.paymentInfo).subscribe(
@@ -301,6 +303,7 @@ export class CheckoutComponent implements OnInit {
               alert(`There was an error: ${result.error.message}`);
             } else {
               // call REST API via the CheckoutService
+              // TODO -- PROBLE HERE
               this.checkoutService.placeOrder(purchase).subscribe({
                 next: response => {
                   console.log("TEST 2");
