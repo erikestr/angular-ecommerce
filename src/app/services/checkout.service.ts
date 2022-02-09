@@ -11,9 +11,9 @@ import { Purchase } from '../common/purchase';
 export class CheckoutService {
 
   // refactor with environment 
-  private purchaseUrl = environment.luv2shopApiUrl+"/purchase"; // TODO -- PROBLEM HERE
+  private purchaseUrl = environment.luv2shopApiUrl+"/checkout/purchase"; // TODO -- PROBLEM HERE
 
-  private  paymentIntentUrl = environment.luv2shopApiUrl + '/checkout/payment-intent';
+  private  paymentIntentUrl = environment.luv2shopApiUrl + "/checkout/payment-intent";
 
   constructor(private httpClient: HttpClient) { }
 
